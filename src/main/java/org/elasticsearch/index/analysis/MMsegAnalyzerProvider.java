@@ -41,7 +41,7 @@ public class MMsegAnalyzerProvider extends AbstractIndexAnalyzerProvider<MMSegAn
     @Inject
     public MMsegAnalyzerProvider(Index index, @IndexSettings Settings indexSettings, Environment env, @Assisted String name, @Assisted Settings settings) {
         super(index, indexSettings, name, settings);
-        String path=new File(env.configFile(),"mmseg").getPath();
+        String path=new File(env.configFile(),settings.get("dic_path", "mmseg")).getPath();
         analyzer=new MMSegAnalyzer(path);
     }
     @Override public MMSegAnalyzer get() {
